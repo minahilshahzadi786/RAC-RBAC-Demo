@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBAC Demonstration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: #e2e8f0; min-height: 100vh; }
+        h1, h2, h3 { color: #f8fafc; border-bottom: 2px solid transparent; border-image: linear-gradient(90deg, #3b82f6, #8b5cf6) 1; padding-bottom: 8px; margin-top: 0; }
+        .card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); margin-bottom: 30px; border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+        .alert { padding: 16px; border-radius: 8px; margin-bottom: 20px; font-weight: 500; }
+        .success { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .warning { background: rgba(245, 158, 11, 0.1); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        a { color: #60a5fa; text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+        a:hover { color: #93c5fd; text-shadow: 0 0 8px rgba(147, 197, 253, 0.5); }
+        ul { list-style-type: none; padding-left: 0; }
+        li { margin-bottom: 12px; background: rgba(15, 23, 42, 0.6); padding: 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid #3b82f6; transition: transform 0.2s; }
+        li:hover { transform: translateX(5px); background: rgba(30, 41, 59, 0.8); }
+        .btn { display: inline-block; padding: 10px 15px; background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; font-weight: 600; border-radius: 8px; border: none; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3); transition: all 0.3s ease; text-decoration: none; }
+        .btn:hover { text-shadow: none; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.5); color: white; }
+        code { background: rgba(0, 0, 0, 0.3); padding: 4px 8px; border-radius: 6px; font-family: monospace; font-size: 0.9em; color: #a78bfa; }
+    </style>
+</head>
+<body>
+    <h1>Broken Access Control & RBAC Demo</h1>
+    <p>This application demonstrates Broken Access Control (OWASP #1) and how Role-Based Access Control (RBAC) mitigates it.</p>
+
+    <div class="card">
+        <h2>Authentication</h2>
+        {{USER_INFO}}
+    </div>
+
+    <div class="card">
+        <h2>Dashboard Links</h2>
+        <p><em>Notice how links are dynamically shown/hidden depending on your role. But is hiding links enough?</em></p>
+        <ul>
+            {{ADMIN_LINKS}}
+            {{MSG_LINKS}}
+        </ul>
+    </div>
+
+    <div class="card" style="border-left: 5px solid #e74c3c;">
+        {{DEMO_SECTION}}
+    </div>
+</body>
+</html>
